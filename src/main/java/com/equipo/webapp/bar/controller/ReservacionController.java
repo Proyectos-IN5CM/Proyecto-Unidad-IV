@@ -63,8 +63,8 @@ public class ReservacionController {
         
         try {
             Reservacion reservacion = reservacionService.buscarReservacionPorId(id);
-            reservacion.setFecha(reservacionNuevo.getFecha());
-            reservacion.setLugar(reservacionNuevo.getLugar());
+            reservacion.setFechaReservacion(reservacionNuevo.getFechaReservacion());
+            reservacion.setLugarReservacion(reservacionNuevo.getLugarReservacion());
             reservacion.setDescripcion(reservacionNuevo.getDescripcion());
             reservacionService.guardarReservacion(reservacion);
             response.put("message", "La reservacion se ha modificado con éxito!");

@@ -1,5 +1,7 @@
 package com.equipo.webapp.bar.model;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,8 +16,8 @@ public class Reservacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String fecha;
-    private String lugar;
+    private Date fechaReservacion;
+    private String lugarReservacion;
     private String descripcion;
 
 }

@@ -1,5 +1,7 @@
 package com.equipo.webapp.bar.model;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +16,6 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String fechaVenta;
-    private double Total;
+    private Date fechaVenta;
+    private Double total;
 }
