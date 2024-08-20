@@ -15,7 +15,7 @@ public class VentaService implements IVentaService{
     VentaRepository ventaRepository;
 
     @Override
-    public List<Venta> listarVenta() {
+    public List<Venta> listarVentas() {
         return ventaRepository.findAll();
     }
 
@@ -31,6 +31,6 @@ public class VentaService implements IVentaService{
 
     @Override
     public void eliminarVenta(Venta venta) {
-        
+        ventaRepository.delete(venta);
     }
 }

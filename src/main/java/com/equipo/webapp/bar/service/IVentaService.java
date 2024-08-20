@@ -5,7 +5,7 @@ import java.util.List;
 import com.equipo.webapp.bar.model.Venta;
 
 public interface IVentaService {
-    public List<Venta> listarVenta();
+    public List<Venta> listarVentas();
 
     public Venta guardarVenta(Venta venta);
 

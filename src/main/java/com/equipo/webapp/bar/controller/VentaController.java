@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.equipo.webapp.bar.model.Producto;
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.service.VentaService;
 
@@ -28,18 +29,15 @@ public class VentaController {
     VentaService ventaService;
 
     @GetMapping("/ventas")
-    public ResponseEntity<List<Venta>> listarVenta(){
-        try {
-            return ResponseEntity.ok(ventaService.listarVenta());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+    public List<Venta> listarVentas(){
+        return ventaService.listarVentas();
     }
 
-    @GetMapping("venta")
+    @GetMapping("/venta")
     public ResponseEntity<Venta> buscarVentaPorId(@RequestParam Long id){
         try {
-            return ResponseEntity.ok(ventaService.buscarVentaPorId(id));
+            Venta venta = ventaService.buscarVentaPorId(id);
+            return ResponseEntity.ok(venta);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }
@@ -59,15 +57,14 @@ public class VentaController {
         }
     }
 
-    @PutMapping("venta")
+    @PutMapping("/venta")
     public ResponseEntity<Map<String, String>> editarVenta(@RequestParam Long id, @RequestBody Venta ventaNueva){
         Map<String, String> response = new HashMap<>();
         try {
             Venta venta = ventaService.buscarVentaPorId(id);
             venta.setFechaVenta(ventaNueva.getFechaVenta());
-            venta.setId(ventaNueva.getId());
             venta.setTotal(ventaNueva.getTotal());
-
+            ventaService.guardarVenta(venta);
             response.put("message", "Venta modificada con exito");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -77,13 +74,12 @@ public class VentaController {
         }
     }
 
-    @DeleteMapping("/libro")
+    @DeleteMapping("/venta")
     public ResponseEntity<Map<String, String>> eliminarVenta(@RequestParam Long id){
         Map<String, String> response = new HashMap<>();
         try {
             Venta venta = ventaService.buscarVentaPorId(id);
             ventaService.eliminarVenta(venta);
-            
             response.put("message", "Venta eliminada con exito");
             return ResponseEntity.ok(response);
         } catch (Exception e) {

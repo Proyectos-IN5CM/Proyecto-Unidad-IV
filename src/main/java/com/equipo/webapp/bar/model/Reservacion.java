@@ -18,5 +18,4 @@ public class Reservacion {
     private String lugar;
     private String descripcion;
 
-    
 }

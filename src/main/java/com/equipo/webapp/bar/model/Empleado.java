@@ -17,5 +17,5 @@ public class Empleado {
     private Long id;
     private String nombre;
     private String apellido;
-    private Long telefono;
+    private String telefono;
 }
