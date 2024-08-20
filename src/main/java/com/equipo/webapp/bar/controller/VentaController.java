@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.equipo.webapp.bar.model.Producto;
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.service.VentaService;
 
@@ -28,18 +29,21 @@ public class VentaController {
     VentaService ventaService;
 
     @GetMapping("/ventas")
-    public ResponseEntity<List<Venta>> listarVenta(){
-        try {
-            return ResponseEntity.ok(ventaService.listarVenta());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+    public List<Venta> listarVentas(){
+        return ventaService.listarVenta();
     }
 
-    @GetMapping("venta")
-    public ResponseEntity<Venta> buscarVentaPorId(@RequestParam Long id){
+    @GetMapping("/venta")
+    public ResponseEntity<Venta> buscarVentaPorId(@RequestParam Long id) {
+        if (id == null || id <= 0) {
+            return ResponseEntity.badRequest().body(null);
+        }
         try {
-            return ResponseEntity.ok(ventaService.buscarVentaPorId(id));
+            Venta venta = ventaService.buscarVentaPorId(id);
+            if (venta == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(venta);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }
@@ -59,17 +63,26 @@ public class VentaController {
         }
     }
 
-    @PutMapping("venta")
-    public ResponseEntity<Map<String, String>> editarVenta(@RequestParam Long id, @RequestBody Venta ventaNueva){
+    @PutMapping("/venta")
+    public ResponseEntity<Map<String, String>> editarVenta(@RequestParam Long id, @RequestBody Venta ventaNueva) {
         Map<String, String> response = new HashMap<>();
         try {
             Venta venta = ventaService.buscarVentaPorId(id);
+            if (venta == null) {
+                throw new IllegalArgumentException("Venta con ID" + id + " no encontrada.");
+            }
+            if (ventaNueva == null || ventaNueva.getFechaVenta() == null || ventaNueva.getTotal() <= 0) {
+                throw new IllegalArgumentException("Datos inválidos para la venta.");
+            }
             venta.setFechaVenta(ventaNueva.getFechaVenta());
-            venta.setId(ventaNueva.getId());
             venta.setTotal(ventaNueva.getTotal());
-
-            response.put("message", "Venta modificada con exito");
+            ventaService.guardarVenta(venta);
+            response.put("message", "Venta modificada con éxito");
             return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            response.put("message", "Error");
+            response.put("err", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
         } catch (Exception e) {
             response.put("message", "Error");
             response.put("err", "No se pudo modificar la venta");
@@ -77,13 +90,12 @@ public class VentaController {
         }
     }
 
-    @DeleteMapping("/libro")
+    @DeleteMapping("/venta")
     public ResponseEntity<Map<String, String>> eliminarVenta(@RequestParam Long id){
         Map<String, String> response = new HashMap<>();
         try {
             Venta venta = ventaService.buscarVentaPorId(id);
             ventaService.eliminarVenta(venta);
-            
             response.put("message", "Venta eliminada con exito");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
