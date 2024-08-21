@@ -49,11 +49,10 @@ public class ClienteController {
     }
 
     @PostMapping("/cliente")
-<<<<<<< HEAD
-    public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente){
+    public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente) {
         Map<String, String> response = new HashMap<>();
+    
         try {
-
             if (cliente.getNombre() == null || cliente.getNombre().trim().isEmpty()) {
                 response.put("message", "Error!");
                 response.put("error", "El nombre no puede estar vacío.");
@@ -64,38 +63,26 @@ public class ClienteController {
                 response.put("error", "El teléfono no puede estar vacío.");
                 return ResponseEntity.badRequest().body(response);
             }
-
+            if (clienteService.verificarDpiDuplicado(cliente)) {
+                response.put("message", "Error!");
+                response.put("err", "El DPI ya está registrado para otro cliente!");
+                return ResponseEntity.badRequest().body(response);
+            }
             clienteService.guardarCliente(cliente);
             response.put("message", "Cliente creado con éxito!");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-=======
-public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente) {
-    Map<String, String> response = new HashMap<>();
-    
-    try {
-        if (clienteService.verificarDpiDuplicado(cliente)) {
->>>>>>> 1448101a2ac3e074a30274ee34664ba5f47f799f
             response.put("message", "Error!");
-            response.put("err", "El DPI ya está registrado para otro cliente!");
+            response.put("err", "Hubo un error al crear el cliente!");
             return ResponseEntity.badRequest().body(response);
         }
-        
-        clienteService.guardarCliente(cliente);
-        response.put("message", "Cliente creado con éxito!");
-        return ResponseEntity.ok(response);
-        
-    } catch (Exception e) {
-        response.put("message", "Error!");
-        response.put("err", "Hubo un error al crear el cliente!");
-        return ResponseEntity.badRequest().body(response);
     }
-}
 
 
     @PutMapping("/cliente")
     public ResponseEntity<Map<String, String>> editarCliente(@RequestParam Long dpi, @RequestBody Cliente clienteNuevo){
         Map<String, String> response = new HashMap<>();
+
         try {
             Cliente cliente = clienteService.buscarClientePorDPI(dpi);
             cliente.setNombre(clienteNuevo.getNombre());

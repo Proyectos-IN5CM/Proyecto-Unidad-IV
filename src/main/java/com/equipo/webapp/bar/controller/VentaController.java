@@ -17,10 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1448101a2ac3e074a30274ee34664ba5f47f799f
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.service.VentaService;
 
@@ -34,7 +30,6 @@ public class VentaController {
     VentaService ventaService;
 
     @GetMapping("/ventas")
-<<<<<<< HEAD
     public ResponseEntity<List<Venta>> listarVentas(){
         try {
             return ResponseEntity.ok(ventaService.listarVentas());
@@ -44,15 +39,7 @@ public class VentaController {
     }
 
     @GetMapping("/venta")
-    public ResponseEntity<Venta> buscarVentaPorId(@RequestParam Long id){
-=======
-    public List<Venta> listarVentas(){
-        return ventaService.listarVenta();
-    }
-
-    @GetMapping("/venta")
     public ResponseEntity<Venta> buscarVentaPorId(@RequestParam Long id) {
->>>>>>> carlospriego-2020544
         try {
             Venta venta = ventaService.buscarVentaPorId(id);
             return ResponseEntity.ok(venta);
@@ -82,7 +69,6 @@ public class VentaController {
     }
 
     @PutMapping("/venta")
-<<<<<<< HEAD
     public ResponseEntity<Map<String, String>> editarVenta(@RequestParam Long id, @RequestBody Venta ventaNueva){
         Map<String, String> response = new HashMap<>();
 
@@ -106,21 +92,7 @@ public class VentaController {
         } catch (Exception e) {
             response.put("message", "Error");
             response.put("err", "Hubo un error al intentar modificar la venta!");
-=======
-    public ResponseEntity<Map<String, String>> editarVenta(@RequestParam Long id, @RequestBody Venta ventaNueva) {
-        Map<String, String> response = new HashMap<>();
-        try{
-            Venta venta = ventaService.buscarVentaPorId(id);
-            venta.setFechaVenta(ventaNueva.getFechaVenta());
-            venta.setId(ventaNueva.getId());
-            venta.setTotal(ventaNueva.getTotal());
-            response.put("message", "La venta ha sido modificada con éxito");
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            response.put("message", "Error");
-            response.put("err", "Hubo un error al intentar modificar la venta");
->>>>>>> carlospriego-2020544
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.badRequest().body(null);
         }
     }
 

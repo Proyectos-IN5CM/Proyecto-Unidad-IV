@@ -85,7 +85,7 @@ public class ReservacionController {
     }
 
     @DeleteMapping("/reservacion")
-    public ResponseEntity<Map<String, String>> eliminarProducto(@RequestParam Long id){
+    public ResponseEntity<Map<String, String>> eliminarReservacion(@RequestParam Long id){
         Map<String, String> response = new HashMap<>();
         
         try {

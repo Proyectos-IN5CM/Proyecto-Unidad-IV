@@ -49,17 +49,9 @@ public class ProveedorController {
     }
 
     @PostMapping("/proveedor")
-public ResponseEntity<Map<String, String>> agregarProveedor(@RequestBody Proveedor proveedor) {
-    Map<String, String> response = new HashMap<>();
+    public ResponseEntity<Map<String, String>> agregarProveedor(@RequestBody Proveedor proveedor) {
+        Map<String, String> response = new HashMap<>();
     
-        try {
-            if (proveedorService.verificarTelefonoDuplicado(proveedor)) {
-            response.put("message", "Error!");
-            response.put("err", "El número de teléfono ya está registrado para otro proveedor!");
-            return ResponseEntity.badRequest().body(response);
-        }
-        
-<<<<<<< HEAD
         try { 
             if (proveedor.getTelefono() == null || proveedor.getTelefono().trim().isEmpty() || proveedor.getTelefono().length() != 8) {
                 response.put("message", "Error!");
@@ -69,53 +61,40 @@ public ResponseEntity<Map<String, String>> agregarProveedor(@RequestBody Proveed
             if (proveedor.getMarcaTrabajo() == null || proveedor.getMarcaTrabajo().trim().isEmpty()) {
                 throw new IllegalArgumentException("La marca de trabajo no puede estar vacía.");
             }
-=======
->>>>>>> 1448101a2ac3e074a30274ee34664ba5f47f799f
-            proveedorService.guardarProveedor(proveedor);
-            response.put("message", "Proveedor creado con éxito!");
-            return ResponseEntity.ok(response);
-        
-        } catch (Exception e) {
-            response.put("message", "Error!");
-            response.put("err", "Hubo un error al crear el proveedor!");
-            return ResponseEntity.badRequest().body(response);
-    }
-}
-
-@PutMapping("/proveedor")
-public ResponseEntity<Map<String, String>> editarProveedor(@RequestParam Long id, @RequestBody Proveedor proveedorNuevo) {
-    Map<String, String> response = new HashMap<>();
-    
-        try {
-                Proveedor proveedorExistente = proveedorService.buscarProveedorPorId(id);
-            if (proveedorExistente == null) {
-                response.put("message", "Error!");
-                response.put("err", "Proveedor no encontrado!");
-                return ResponseEntity.notFound().build();
-        }
-        
-            if (proveedorService.verificarTelefonoDuplicado(proveedorNuevo)) {
+            if (proveedorService.verificarTelefonoDuplicado(proveedor)) {
                 response.put("message", "Error!");
                 response.put("err", "El número de teléfono ya está registrado para otro proveedor!");
                 return ResponseEntity.badRequest().body(response);
-        }
-        
-            proveedorExistente.setNombre(proveedorNuevo.getNombre());
-            proveedorExistente.setApellido(proveedorNuevo.getApellido());
-            proveedorExistente.setTelefono(proveedorNuevo.getTelefono());
-            proveedorExistente.setMarcaTrabajo(proveedorNuevo.getMarcaTrabajo());
-        
-            proveedorService.guardarProveedor(proveedorExistente);
-        
-            response.put("message", "El proveedor se ha modificado con éxito!");
-        return ResponseEntity.ok(response);
-        
-        } catch (Exception e) {
+            }
+            proveedorService.guardarProveedor(proveedor);
+            response.put("message", "Proveedor creado con éxito!");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) { //Mal
             response.put("message", "Error!");
+            response.put("err", "Hubo un error al crear el proveedor!");
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @PutMapping("/proveedor")
+    public ResponseEntity<Map<String, String>> editarProveedor(@RequestParam Long id, @RequestBody Proveedor proveedorNuevo) {
+        Map<String, String> response = new HashMap<>();
+    
+        try {
+            Proveedor proveedor = proveedorService.buscarProveedorPorId(id);
+            proveedor.setNombre(proveedorNuevo.getNombre());
+            proveedor.setApellido(proveedorNuevo.getApellido());
+            proveedor.setTelefono(proveedorNuevo.getTelefono());
+            proveedor.setMarcaTrabajo(proveedorNuevo.getMarcaTrabajo());
+            proveedorService.guardarProveedor(proveedor);
+            response.put("message", "El proveedor se ha modificado con éxito!");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("message", "Error");
             response.put("err", "Hubo un error al intentar modificar el proveedor!");
             return ResponseEntity.badRequest().body(response);
+        }
     }
-}
 
 
     @DeleteMapping("/proveedor")

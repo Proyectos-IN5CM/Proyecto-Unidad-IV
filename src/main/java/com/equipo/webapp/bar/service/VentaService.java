@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.equipo.webapp.bar.model.Empleado;
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.repository.VentaRepository;
 
