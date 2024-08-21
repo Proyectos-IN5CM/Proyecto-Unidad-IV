@@ -51,13 +51,19 @@ public class VentaController {
     @PostMapping("/venta")
     public ResponseEntity<Map<String, String>> agregarVenta(@RequestBody Venta venta){
         Map<String, String> response = new HashMap<>();
-        try {
-            ventaService.guardarVenta(venta);
-            response.put("message", "venta agregada con exito");
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            response.put("message", "Error");
-            response.put("err", "No se pudo agregar la venta");
+        try { //Bien
+            if (!ventaService.verificarTotal()) {
+                ventaService.guardarVenta(venta);
+                response.put("message", "Venta creada con éxito!");
+                return ResponseEntity.ok(response);
+            }else{
+                response.put("message", "Error");
+                response.put("err", "El total se encuentra no puede ser negativo!");
+                return ResponseEntity.badRequest().body(response);
+            }
+        } catch (Exception e) { //Mal
+            response.put("message", "Error!");
+            response.put("err", "Hubo un error al crear la venta!");
             return ResponseEntity.badRequest().body(response);
         }
     }
@@ -65,19 +71,27 @@ public class VentaController {
     @PutMapping("/venta")
     public ResponseEntity<Map<String, String>> editarVenta(@RequestParam Long id, @RequestBody Venta ventaNueva){
         Map<String, String> response = new HashMap<>();
+
+        Venta venta = ventaService.buscarVentaPorId(id);
+        venta.setFechaVenta(ventaNueva.getFechaVenta());
+        venta.setTotal(ventaNueva.getTotal());
+        venta.setEmpleado(ventaNueva.getEmpleado());
+        venta.setCliente(ventaNueva.getCliente());
+        venta.setProductos(ventaNueva.getProductos());
+        
         try {
-            Venta venta = ventaService.buscarVentaPorId(id);
-            venta.setFechaVenta(ventaNueva.getFechaVenta());
-            venta.setTotal(ventaNueva.getTotal());
-            venta.setEmpleado(ventaNueva.getEmpleado());
-            venta.setCliente(ventaNueva.getCliente());
-            venta.setProductos(ventaNueva.getProductos());
-            ventaService.guardarVenta(venta);
-            response.put("message", "Venta modificada con exito");
-            return ResponseEntity.ok(response);
+            if (!ventaService.verificarTotal()) {
+                ventaService.guardarVenta(venta);
+                response.put("message", "La venta se ha modificado con éxito!");
+                return ResponseEntity.ok(response);
+            }else{
+                response.put("message", "Error");
+                response.put("err", "El total se encuentra nulo!");
+                return ResponseEntity.badRequest().body(response);
+            }
         } catch (Exception e) {
             response.put("message", "Error");
-            response.put("err", "No se pudo modificar la venta");
+            response.put("err", "Hubo un error al intentar modificar la venta!");
             return ResponseEntity.badRequest().body(response);
         }
     }

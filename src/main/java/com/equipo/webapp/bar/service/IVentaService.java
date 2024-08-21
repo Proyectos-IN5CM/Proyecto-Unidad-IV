@@ -12,4 +12,6 @@ public interface IVentaService {
     public Venta buscarVentaPorId(Long id);
 
     public void eliminarVenta(Venta venta);
+
+    public Boolean verificarTotal();
 }
