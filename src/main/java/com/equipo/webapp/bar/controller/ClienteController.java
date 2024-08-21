@@ -49,18 +49,27 @@ public class ClienteController {
     }
 
     @PostMapping("/cliente")
-    public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente){
-        Map<String, String> response = new HashMap<>();
-        try {
-            clienteService.guardarCliente(cliente);
-            response.put("message", "Cliente creado con éxito!");
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
+public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente) {
+    Map<String, String> response = new HashMap<>();
+    
+    try {
+        if (clienteService.verificarDpiDuplicado(cliente)) {
             response.put("message", "Error!");
-            response.put("err", "Hubo un error al crear el cliente!");
+            response.put("err", "El DPI ya está registrado para otro cliente!");
             return ResponseEntity.badRequest().body(response);
         }
+        
+        clienteService.guardarCliente(cliente);
+        response.put("message", "Cliente creado con éxito!");
+        return ResponseEntity.ok(response);
+        
+    } catch (Exception e) {
+        response.put("message", "Error!");
+        response.put("err", "Hubo un error al crear el cliente!");
+        return ResponseEntity.badRequest().body(response);
     }
+}
+
 
     @PutMapping("/cliente")
     public ResponseEntity<Map<String, String>> editarCliente(@RequestParam Long dpi, @RequestBody Cliente clienteNuevo){

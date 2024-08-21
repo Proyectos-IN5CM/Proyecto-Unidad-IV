@@ -34,4 +34,15 @@ public class ProveedorService implements IProveedorService {
         proveedorRepository.delete(proveedor);
     }
 
+    
+    public Boolean verificarTelefonoDuplicado(Proveedor proveedor) {
+        List<Proveedor> proveedores = listarProveedores();
+
+        for (Proveedor e : proveedores) {
+            if (e.getTelefono().equals(proveedor.getTelefono()) && !e.getId().equals(proveedor.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
