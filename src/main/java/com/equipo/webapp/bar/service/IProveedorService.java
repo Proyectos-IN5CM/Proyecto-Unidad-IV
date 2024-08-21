@@ -14,4 +14,7 @@ public interface IProveedorService {
 
     public void eliminarProveedor(Proveedor proveedor);
 
+    public Boolean verificarTelefonoDuplicado (Proveedor proveedor);
+
+
 }

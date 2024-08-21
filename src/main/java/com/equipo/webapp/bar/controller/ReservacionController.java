@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,19 @@ import com.equipo.webapp.bar.service.ReservacionService;
 @Controller
 @RestController
 @RequestMapping("")
+@CrossOrigin(value = "http://127.0.0.1:5500")
 public class ReservacionController {
 
     @Autowired
     ReservacionService reservacionService;
 
     @GetMapping("/reservaciones")
-    public List<Reservacion> listarReservaciones(){
-        return reservacionService.listarReservaciones();
+    public ResponseEntity<List<Reservacion>> listarReservaciones(){
+        try {
+            return ResponseEntity.ok(reservacionService.listarReservaciones());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/reservacion")
@@ -63,9 +69,11 @@ public class ReservacionController {
         
         try {
             Reservacion reservacion = reservacionService.buscarReservacionPorId(id);
-            reservacion.setFecha(reservacionNuevo.getFecha());
-            reservacion.setLugar(reservacionNuevo.getLugar());
+            reservacion.setFechaReservacion(reservacionNuevo.getFechaReservacion());
+            reservacion.setLugarReservacion(reservacionNuevo.getLugarReservacion());
             reservacion.setDescripcion(reservacionNuevo.getDescripcion());
+            reservacion.setEstado(reservacionNuevo.getEstado());
+            reservacion.setClientes(reservacionNuevo.getClientes());
             reservacionService.guardarReservacion(reservacion);
             response.put("message", "La reservacion se ha modificado con éxito!");
             return ResponseEntity.ok(response);

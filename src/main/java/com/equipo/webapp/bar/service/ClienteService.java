@@ -34,4 +34,18 @@ public class ClienteService implements IClienteService {
         clienteRepository.delete(cliente);
     }
 
+     @Override
+    public Boolean verificarDpiDuplicado(Cliente cliente) {
+        Boolean flag = Boolean.FALSE;
+        List<Cliente> clientes = listarClientes();
+
+        for (Cliente e : clientes) {
+            if (e.getDpi() == cliente.getDpi() && !e.equals(cliente)) {
+                flag = Boolean.TRUE;
+            }
+        }
+        return flag;
+    }
+
+
 }

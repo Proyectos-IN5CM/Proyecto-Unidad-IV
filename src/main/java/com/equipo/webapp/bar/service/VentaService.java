@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.equipo.webapp.bar.model.Empleado;
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.repository.VentaRepository;
 
@@ -32,5 +33,18 @@ public class VentaService implements IVentaService{
     @Override
     public void eliminarVenta(Venta venta) {
         ventaRepository.delete(venta);
+    }
+
+    @Override
+    public Boolean verificarTotal() {
+        Boolean flag = Boolean.FALSE;
+        List<Venta> ventas = listarVentas();
+
+        for (Venta v : ventas) {
+            if (v.getTotal() <= 0) {
+                flag = Boolean.TRUE;
+            }
+        }
+        return flag;
     }
 }
