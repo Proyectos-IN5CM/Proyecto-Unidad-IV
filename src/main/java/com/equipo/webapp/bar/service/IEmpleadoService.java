@@ -13,5 +13,5 @@ public interface IEmpleadoService {
     public Empleado guardarEmpleado (Empleado empleado);
     
     public void eliminarEmpleado (Empleado empleado);
-    
+ 
 }
