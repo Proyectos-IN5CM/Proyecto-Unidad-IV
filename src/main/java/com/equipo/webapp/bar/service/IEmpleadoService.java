@@ -6,7 +6,7 @@ import com.equipo.webapp.bar.model.Empleado;
 
 public interface IEmpleadoService {
 
-    public List<Empleado>listarEmpleado();
+    public List<Empleado>listarEmpleados();
 
     public Empleado buscarEmpleadoPorId(Long id);
     

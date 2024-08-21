@@ -30,8 +30,12 @@ public class ProveedorController {
     ProveedorService proveedorService;
 
     @GetMapping("/proveedores")
-    public List<Proveedor> listarProveedores(){
-        return proveedorService.listarProveedores();
+    public ResponseEntity<List<Proveedor>> listarProveedores(){
+        try {
+            return ResponseEntity.ok(proveedorService.listarProveedores());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/proveedor")

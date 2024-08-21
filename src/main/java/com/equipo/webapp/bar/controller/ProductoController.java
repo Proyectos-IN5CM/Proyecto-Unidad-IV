@@ -30,8 +30,12 @@ public class ProductoController {
     ProductoService productoService;
 
     @GetMapping("/productos")
-    public List<Producto> listarProductos(){
-        return productoService.listarProductos();
+    public ResponseEntity<List<Producto>> listarProductos(){
+        try {
+            return ResponseEntity.ok(productoService.listarProductos());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/producto")

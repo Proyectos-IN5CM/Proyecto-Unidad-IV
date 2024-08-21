@@ -30,8 +30,12 @@ public class ClienteController {
     ClienteService clienteService;
 
     @GetMapping("/clientes")
-    public List<Cliente> listarClientes(){
-        return clienteService.listarClientes();
+    public ResponseEntity<List<Cliente>> listarClientes(){
+        try {
+            return ResponseEntity.ok(clienteService.listarClientes());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/cliente")

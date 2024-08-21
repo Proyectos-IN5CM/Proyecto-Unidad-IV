@@ -30,8 +30,12 @@ public class VentaController {
     VentaService ventaService;
 
     @GetMapping("/ventas")
-    public List<Venta> listarVentas(){
-        return ventaService.listarVentas();
+    public ResponseEntity<List<Venta>> listarVentas(){
+        try {
+            return ResponseEntity.ok(ventaService.listarVentas());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/venta")

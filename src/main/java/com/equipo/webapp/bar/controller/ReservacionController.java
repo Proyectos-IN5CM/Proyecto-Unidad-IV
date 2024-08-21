@@ -30,8 +30,12 @@ public class ReservacionController {
     ReservacionService reservacionService;
 
     @GetMapping("/reservaciones")
-    public List<Reservacion> listarReservaciones(){
-        return reservacionService.listarReservaciones();
+    public ResponseEntity<List<Reservacion>> listarReservaciones(){
+        try {
+            return ResponseEntity.ok(reservacionService.listarReservaciones());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/reservacion")

@@ -1,0 +1,27 @@
+ ---------------------------------
+|Comentarios sobre los Integrantes|
+ ---------------------------------
+1- Carlos Orozco
+	Realizará una entidad con todo el CRUD
+	(Reservaciones)
+2. Carlos Priego
+	Realizará una entidad con todo el CRUD
+	(Ventas)
+3. Gerardo Contreras
+	Realizará una entidad con todo el CRUD
+	(Clientes)
+4. Joaquín Gonzalez
+	Realizará una entidad con todo el CRUD
+	(Empleados)
+
+// Gerardo y Contreras
+	Tomé la desición de que ellos trabajen más
+	tiempo juntos para tratar de mejorar el
+	rendimiento del equipo. También cuentan con
+	mi ayuda.
+
+-- En lo general el equipo trabajo muy bien, hubieron
+   problemas en el código, pero supieron llevar estos
+   mismos. Me gusta eso del equipo. Hay cosas que
+   pueden mejorar, tienen margen para aprender.
+   Los calificaría con un 9/10.

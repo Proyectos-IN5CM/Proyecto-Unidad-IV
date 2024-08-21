@@ -30,8 +30,12 @@ public class EmpleadoController {
     EmpleadoService empleadoService;
     
     @GetMapping("/empleados")
-    public List<Empleado> listarEmpleados(){
-       return empleadoService.listarEmpleado();
+    public ResponseEntity<List<Empleado>> listarEmpleados(){
+        try {
+            return ResponseEntity.ok(empleadoService.listarEmpleados());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/empleado")

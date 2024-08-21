@@ -15,7 +15,7 @@ public class EmpleadoService implements IEmpleadoService {
     EmpleadoRepository empleadoRepository;
 
     @Override
-    public List<Empleado> listarEmpleado() {
+    public List<Empleado> listarEmpleados() {
         return empleadoRepository.findAll();
     }
 
