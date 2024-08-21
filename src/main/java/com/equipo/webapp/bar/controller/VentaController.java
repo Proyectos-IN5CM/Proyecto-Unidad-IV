@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.equipo.webapp.bar.model.Producto;
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.service.VentaService;
 
 @Controller
 @RestController
 @RequestMapping("")
+@CrossOrigin(value = "http://127.0.0.1:5500")
 public class VentaController {
 
     @Autowired
@@ -64,6 +65,9 @@ public class VentaController {
             Venta venta = ventaService.buscarVentaPorId(id);
             venta.setFechaVenta(ventaNueva.getFechaVenta());
             venta.setTotal(ventaNueva.getTotal());
+            venta.setEmpleado(ventaNueva.getEmpleado());
+            venta.setCliente(ventaNueva.getCliente());
+            venta.setProductos(ventaNueva.getProductos());
             ventaService.guardarVenta(venta);
             response.put("message", "Venta modificada con exito");
             return ResponseEntity.ok(response);
