@@ -1,7 +1,10 @@
 package com.equipo.webapp.bar.model;
 
 import java.sql.Date;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> carlospriego-2020544
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +26,7 @@ public class Venta {
     private Long id;
     private Date fechaVenta;
     private Double total;
+<<<<<<< HEAD
     @ManyToOne
     private Empleado empleado;
     @ManyToOne
@@ -33,4 +37,6 @@ public class Venta {
     inverseJoinColumns = @JoinColumn(name = "productos_id", referencedColumnName = "id"))
     private List<Producto> productos;
 
+=======
+>>>>>>> carlospriego-2020544
 }
