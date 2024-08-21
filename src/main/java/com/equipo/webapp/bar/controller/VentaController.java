@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.equipo.webapp.bar.model.Producto;
+
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.service.VentaService;
 

@@ -46,6 +46,18 @@ public class ClienteController {
     public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente){
         Map<String, String> response = new HashMap<>();
         try {
+
+            if (cliente.getNombre() == null || cliente.getNombre().trim().isEmpty()) {
+                response.put("message", "Error!");
+                response.put("error", "El nombre no puede estar vacío.");
+                return ResponseEntity.badRequest().body(response);
+            }  
+            if (cliente.getTelefono() == null || cliente.getTelefono().trim().isEmpty()) {
+                response.put("message", "Error!");
+                response.put("error", "El teléfono no puede estar vacío.");
+                return ResponseEntity.badRequest().body(response);
+            }
+
             clienteService.guardarCliente(cliente);
             response.put("message", "Cliente creado con éxito!");
             return ResponseEntity.ok(response);

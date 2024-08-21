@@ -46,7 +46,15 @@ public class ProveedorController {
     public ResponseEntity<Map<String, String>> agregarProveedor(@RequestBody Proveedor proveedor){
         Map<String, String> response = new HashMap<>();
         
-        try { //Bien
+        try { 
+            if (proveedor.getTelefono() == null || proveedor.getTelefono().trim().isEmpty() || proveedor.getTelefono().length() != 8) {
+                response.put("message", "Error!");
+                response.put("error", "El teléfono debe tener exactamente 8 dígitos");
+                return ResponseEntity.badRequest().body(response);
+            }
+            if (proveedor.getMarcaTrabajo() == null || proveedor.getMarcaTrabajo().trim().isEmpty()) {
+                throw new IllegalArgumentException("La marca de trabajo no puede estar vacía.");
+            }
             proveedorService.guardarProveedor(proveedor);
             response.put("message", "Proveedor creado con éxito!");
             return ResponseEntity.ok(response);
