@@ -35,14 +35,8 @@ public class VentaController {
 
     @GetMapping("/venta")
     public ResponseEntity<Venta> buscarVentaPorId(@RequestParam Long id) {
-        if (id == null || id <= 0) {
-            return ResponseEntity.badRequest().body(null);
-        }
         try {
             Venta venta = ventaService.buscarVentaPorId(id);
-            if (venta == null) {
-                return ResponseEntity.notFound().build();
-            }
             return ResponseEntity.ok(venta);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
@@ -66,26 +60,16 @@ public class VentaController {
     @PutMapping("/venta")
     public ResponseEntity<Map<String, String>> editarVenta(@RequestParam Long id, @RequestBody Venta ventaNueva) {
         Map<String, String> response = new HashMap<>();
-        try {
+        try{
             Venta venta = ventaService.buscarVentaPorId(id);
-            if (venta == null) {
-                throw new IllegalArgumentException("Venta con ID" + id + " no encontrada.");
-            }
-            if (ventaNueva == null || ventaNueva.getFechaVenta() == null || ventaNueva.getTotal() <= 0) {
-                throw new IllegalArgumentException("Datos inválidos para la venta.");
-            }
             venta.setFechaVenta(ventaNueva.getFechaVenta());
+            venta.setId(ventaNueva.getId());
             venta.setTotal(ventaNueva.getTotal());
-            ventaService.guardarVenta(venta);
-            response.put("message", "Venta modificada con éxito");
+            response.put("message", "La venta ha sido modificada con éxito");
             return ResponseEntity.ok(response);
-        } catch (IllegalArgumentException e) {
-            response.put("message", "Error");
-            response.put("err", e.getMessage());
-            return ResponseEntity.badRequest().body(response);
         } catch (Exception e) {
             response.put("message", "Error");
-            response.put("err", "No se pudo modificar la venta");
+            response.put("err", "Hubo un error al intentar modificar la venta");
             return ResponseEntity.badRequest().body(response);
         }
     }
