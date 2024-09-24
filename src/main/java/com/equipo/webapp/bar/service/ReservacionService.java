@@ -18,7 +18,6 @@ public class ReservacionService implements IReservacionService {
     @Override
     public List<Reservacion> listarReservaciones() {
         return reservacionRepository.findAll();
-       
     }
 
     @Override
@@ -34,7 +33,6 @@ public class ReservacionService implements IReservacionService {
     @Override
     public void eliminarReservacion(Reservacion reservacion) {
         reservacionRepository.delete(reservacion);
-
     }
 
 

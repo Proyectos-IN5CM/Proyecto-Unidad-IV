@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,19 @@ import com.equipo.webapp.bar.service.EmpleadoService;
 @Controller
 @RestController
 @RequestMapping("")
+@CrossOrigin(value = "http://127.0.0.1:5500")
 public class EmpleadoController {
 
     @Autowired
     EmpleadoService empleadoService;
     
     @GetMapping("/empleados")
-    public List<Empleado> listarEmpleados(){
-       return empleadoService.listarEmpleado();
+    public ResponseEntity<List<Empleado>> listarEmpleados(){
+        try {
+            return ResponseEntity.ok(empleadoService.listarEmpleados());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/empleado")

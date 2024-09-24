@@ -33,4 +33,17 @@ public class VentaService implements IVentaService{
     public void eliminarVenta(Venta venta) {
         ventaRepository.delete(venta);
     }
+
+    @Override
+    public Boolean verificarTotal() {
+        Boolean flag = Boolean.FALSE;
+        List<Venta> ventas = listarVentas();
+
+        for (Venta v : ventas) {
+            if (v.getTotal() <= 0) {
+                flag = Boolean.TRUE;
+            }
+        }
+        return flag;
+    }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="650.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DetalleVentasView.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfId" editable="false" layoutX="38.0" layoutY="203.0" prefHeight="31.0" prefWidth="146.0" promptText="ID Venta" />
+      <TextField fx:id="tfIdProducto" editable="false" layoutX="38.0" layoutY="282.0" prefHeight="31.0" prefWidth="146.0" promptText="ID Producto" />
+      <TableView fx:id="tblDetalleVentas" layoutX="215.0" layoutY="170.0" prefHeight="200.0" prefWidth="248.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="61.60003662109375" text="ID" />
+            <TableColumn fx:id="colIdProducto" prefWidth="185.5999755859375" text="Producto" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnBack" layoutX="25.0" layoutY="599.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Back" />
+      <TextField fx:id="tfBuscarDetalleVenta" layoutX="215.0" layoutY="390.0" prefHeight="26.0" prefWidth="170.0" promptText="Buscar Detalle Venta" />
+      <Button fx:id="btnBuscar" layoutX="403.0" layoutY="390.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Buscar" />
+   </children>
+</AnchorPane>

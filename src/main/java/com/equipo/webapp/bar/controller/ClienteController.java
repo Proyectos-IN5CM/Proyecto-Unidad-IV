@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,19 @@ import com.equipo.webapp.bar.service.ClienteService;
 @Controller
 @RestController
 @RequestMapping("")
+@CrossOrigin(value = "http://127.0.0.1:5500")
 public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
 
     @GetMapping("/clientes")
-    public List<Cliente> listarClientes(){
-        return clienteService.listarClientes();
+    public ResponseEntity<List<Cliente>> listarClientes(){
+        try {
+            return ResponseEntity.ok(clienteService.listarClientes());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/cliente")
@@ -43,31 +49,40 @@ public class ClienteController {
     }
 
     @PostMapping("/cliente")
-public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente) {
-    Map<String, String> response = new HashMap<>();
+    public ResponseEntity<Map<String, String>> agregarCliente(@RequestBody Cliente cliente) {
+        Map<String, String> response = new HashMap<>();
     
-    try {
-        if (clienteService.verificarDpiDuplicado(cliente)) {
+        try {
+            if (cliente.getNombre() == null || cliente.getNombre().trim().isEmpty()) {
+                response.put("message", "Error!");
+                response.put("error", "El nombre no puede estar vacío.");
+                return ResponseEntity.badRequest().body(response);
+            }  
+            if (cliente.getTelefono() == null || cliente.getTelefono().trim().isEmpty()) {
+                response.put("message", "Error!");
+                response.put("error", "El teléfono no puede estar vacío.");
+                return ResponseEntity.badRequest().body(response);
+            }
+            if (clienteService.verificarDpiDuplicado(cliente)) {
+                response.put("message", "Error!");
+                response.put("err", "El DPI ya está registrado para otro cliente!");
+                return ResponseEntity.badRequest().body(response);
+            }
+            clienteService.guardarCliente(cliente);
+            response.put("message", "Cliente creado con éxito!");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
             response.put("message", "Error!");
-            response.put("err", "El DPI ya está registrado para otro cliente!");
+            response.put("err", "Hubo un error al crear el cliente!");
             return ResponseEntity.badRequest().body(response);
         }
-        
-        clienteService.guardarCliente(cliente);
-        response.put("message", "Cliente creado con éxito!");
-        return ResponseEntity.ok(response);
-        
-    } catch (Exception e) {
-        response.put("message", "Error!");
-        response.put("err", "Hubo un error al crear el cliente!");
-        return ResponseEntity.badRequest().body(response);
     }
-}
 
 
     @PutMapping("/cliente")
     public ResponseEntity<Map<String, String>> editarCliente(@RequestParam Long dpi, @RequestBody Cliente clienteNuevo){
         Map<String, String> response = new HashMap<>();
+
         try {
             Cliente cliente = clienteService.buscarClientePorDPI(dpi);
             cliente.setNombre(clienteNuevo.getNombre());

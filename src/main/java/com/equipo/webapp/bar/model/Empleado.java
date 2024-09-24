@@ -3,7 +3,6 @@ package com.equipo.webapp.bar.model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -18,4 +17,5 @@ public class Empleado {
     private String nombre;
     private String apellido;
     private String telefono;
+    
 }

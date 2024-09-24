@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="650.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DetalleReservacionesView.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfId" editable="false" layoutX="38.0" layoutY="216.0" prefHeight="31.0" prefWidth="146.0" promptText="ID Reservación" />
+      <TextField fx:id="tfDpi" editable="false" layoutX="38.0" layoutY="295.0" prefHeight="31.0" prefWidth="146.0" promptText="DPI Cliente" />
+      <TableView fx:id="tblDetalleReservaciones" layoutX="215.0" layoutY="183.0" prefHeight="200.0" prefWidth="248.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="61.60003662109375" text="ID" />
+            <TableColumn fx:id="colDpi" prefWidth="185.5999755859375" text="DPI" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnBack" layoutX="23.0" layoutY="601.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Back" />
+      <TextField fx:id="tfBuscarDetalleReservacion" layoutX="215.0" layoutY="403.0" prefHeight="26.0" prefWidth="170.0" promptText="Buscar Detalle Reservación" />
+      <Button fx:id="btnBuscar" layoutX="403.0" layoutY="403.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Buscar" />
+   </children>
+</AnchorPane>
