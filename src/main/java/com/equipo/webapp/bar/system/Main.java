@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.equipo.webapp.bar.WebappApplication;
+import com.equipo.webapp.bar.controller.FXController.MenuEmpleadosController;
 import com.equipo.webapp.bar.controller.FXController.MenuPrincipalController;
 import com.equipo.webapp.bar.controller.FXController.MenuProductosController;
 
@@ -74,6 +75,14 @@ public class Main extends Application {
             menuProductosView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }    
     }
+    public void menuEmpleadosView(){
+        try {
+            MenuEmpleadosController menuEmpleadosView = (MenuEmpleadosController)cambiarEscena("MenuEmpleadosView.fxml", 900, 625);
+            menuEmpleadosView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+  }
 }
