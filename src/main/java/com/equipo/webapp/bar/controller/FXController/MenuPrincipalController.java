@@ -21,10 +21,13 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     private MenuItem btnProductos;
+    private MenuItem btnClientes;
 
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnProductos){
             stage.menuProductosView();
+        }else if (event.getSource() == btnClientes) {
+            stage.menuClientesView();
         }
     }
 
