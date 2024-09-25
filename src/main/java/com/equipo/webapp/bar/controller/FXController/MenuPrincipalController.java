@@ -25,8 +25,7 @@ public class MenuPrincipalController implements Initializable {
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnProductos){
             stage.menuProductosView();
-        } 
-        if(event.getSource() == btnEmpleados){
+        }else if (event.getSource() == btnEmpleados) {
             stage.menuEmpleadosView();
         }
     }
