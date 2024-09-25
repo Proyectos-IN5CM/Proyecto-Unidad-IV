@@ -15,11 +15,11 @@
             <Image url="@../images/ClientesView.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfDpi" editable="false" layoutX="31.0" layoutY="172.0" prefHeight="30.0" prefWidth="170.0" promptText="DPI Cliente" />
+      <TextField fx:id="tfDpi" layoutX="31.0" layoutY="172.0" prefHeight="30.0" prefWidth="170.0" promptText="DPI Cliente" />
       <TextField fx:id="tfNombre" layoutX="30.0" layoutY="262.0" prefHeight="30.0" prefWidth="170.0" promptText="Nombre Cliente" />
       <TextField fx:id="tfApellido" layoutX="30.0" layoutY="348.0" prefHeight="30.0" prefWidth="170.0" promptText="Apellido Cliente" />
       <TextField fx:id="tfTelefono" layoutX="31.0" layoutY="435.0" prefHeight="30.0" prefWidth="170.0" promptText="Teléfono Cliente" />
-      <TableView fx:id="tblClientes" layoutX="315.0" layoutY="145.0" prefHeight="320.0" prefWidth="535.0">
+      <TableView fx:id="tblClientes" layoutX="315.0" layoutY="145.0" onMouseClicked="#cargarTextField" prefHeight="320.0" prefWidth="535.0">
         <columns>
           <TableColumn fx:id="colDpi" prefWidth="107.99993896484375" text="DPI" />
           <TableColumn fx:id="colNombre" prefWidth="156.00009155273438" text="Nombre" />

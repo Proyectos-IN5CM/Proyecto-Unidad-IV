@@ -50,10 +50,10 @@ public class MenuClientesController implements Initializable {
 
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnGuardar){
-            if (tfDpi.getText().isBlank()){
-                agregarCliente();
-            }else{
+            if (tfDpi.getText().isBlank()) {
                 editarCliente();
+            }else{
+                agregarCliente();
             }
         }else if (event.getSource() == btnEliminar){
             eliminarCliente();
@@ -99,6 +99,7 @@ public class MenuClientesController implements Initializable {
 
     public void agregarCliente(){
         Cliente cliente = new Cliente();
+        cliente.setDpi(Long.parseLong(tfDpi.getText()));
         cliente.setNombre(tfNombre.getText());
         cliente.setApellido(tfApellido.getText());
         cliente.setTelefono(tfTelefono.getText());
