@@ -108,7 +108,6 @@ public class MenuEmpleadosController implements Initializable {
 
     public void editarEmpleado() {
         Empleado empleado = empleadoService.buscarEmpleadoPorId(Long.parseLong(tfId.getText()));
-        
             empleado.setNombre(tfNombre.getText());
             empleado.setApellido(tfApellido.getText());
             empleado.setTelefono(tfTelefono.getText());
