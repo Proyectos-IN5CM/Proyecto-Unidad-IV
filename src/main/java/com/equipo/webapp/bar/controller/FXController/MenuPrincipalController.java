@@ -20,16 +20,18 @@ public class MenuPrincipalController implements Initializable {
     private Main stage;
 
     @FXML
-    private MenuItem btnProductos;
+    private MenuItem btnProductos, btnVentas;
+
 
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnProductos){
-            stage.menuProductosView();
+            stage.menuProductosView(); 
+        } else if(event.getSource() == btnVentas){
+            stage.menuVentasView();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        
     }
 }

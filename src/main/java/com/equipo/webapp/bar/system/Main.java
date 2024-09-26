@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.equipo.webapp.bar.WebappApplication;
 import com.equipo.webapp.bar.controller.FXController.MenuPrincipalController;
 import com.equipo.webapp.bar.controller.FXController.MenuProductosController;
+import com.equipo.webapp.bar.controller.FXController.MenuVentasController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -72,6 +73,15 @@ public class Main extends Application {
         try {
             MenuProductosController menuProductosView = (MenuProductosController)cambiarEscena("MenuProductosView.fxml", 900, 625);
             menuProductosView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void menuVentasView(){
+        try {
+            MenuVentasController menuVentasView = (MenuVentasController)cambiarEscena("MenuVentasView.fxml", 900, 625);
+            menuVentasView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
