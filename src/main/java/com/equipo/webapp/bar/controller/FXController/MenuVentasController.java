@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,41 +35,27 @@ public class MenuVentasController implements Initializable {
     private Main stage;
 
     @FXML
-    TextField tfId, tfTotal, tfFecha, tfBuscarVenta, tfEmpleado, tfCliente;
-
+    TextField tfId, tfTotal, tfFecha, tfBuscarVenta;
     @FXML
-    Button btnGuardar, btnEliminar, btnVaciar, btnBuscar, btnBack;
-
+    Button btnGuardar, btnEliminar, btnVaciar, btnBuscar, btnBack, btnDetalleVentas;
     @FXML
-    TableView<Venta> tblVentas;
-
+    TableView tblVentas;
     @FXML
-    TableColumn<Venta, Long> colId;
-
+    TableColumn colId, colFecha, colTotal, colEmpleado, colCliente;
     @FXML
-    TableColumn<Venta, String> colFecha;
-
-    @FXML
-    TableColumn<Venta, Double> colTotal;
-
-    @FXML
-    TableColumn<Venta, String> colEmpleado;
-
-    @FXML
-    TableColumn<Venta, String> colCliente;
+    ComboBox cmbEmpleado, cmbCliente;
 
     @Autowired
-    VentaService ventaService;
-
+     VentaService ventaService;
     @Autowired
-    EmpleadoService empleadoService;  
-
+     EmpleadoService empleadoService;
     @Autowired
-    ClienteService clienteService;  
+     ClienteService clienteService;
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
         cargarDatos();
+        cargarComboBoxes();
     }
 
     public void handleButtonAction(ActionEvent event) {
@@ -84,6 +71,8 @@ public class MenuVentasController implements Initializable {
             vaciarTextField();
         } else if (event.getSource() == btnBuscar) {
             buscarVenta();
+        } else if (event.getSource() == btnDetalleVentas) {
+            stage.menuDetalleVentasView();
         } else if (event.getSource() == btnBack) {
             stage.menuPrincipalView();
         }
@@ -95,17 +84,16 @@ public class MenuVentasController implements Initializable {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaVenta"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colEmpleado.setCellValueFactory(new PropertyValueFactory<>("empleado.nombre")); // Asumiendo que `empleado` tiene un atributo `nombre`
+        colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente.nombre")); // Asumiendo que `cliente` tiene un atributo `nombre`
     }
 
-    public void cargarTextField() {
-        Venta venta = tblVentas.getSelectionModel().getSelectedItem();
-        if (venta != null) {
-            tfId.setText(Long.toString(venta.getId()));
-            tfFecha.setText(venta.getFechaVenta().toString());
-            tfTotal.setText(Double.toString(venta.getTotal()));
-            tfEmpleado.setText(Long.toString(venta.getEmpleado().getId()));  
-            tfCliente.setText(Long.toString(venta.getCliente().getDpi()));  
-        }
+    public void cargarComboBoxes() {
+        ObservableList<Empleado> empleados = FXCollections.observableArrayList(empleadoService.listarEmpleados());
+        cmbEmpleado.setItems(empleados);
+
+        ObservableList<Cliente> clientes = FXCollections.observableArrayList(clienteService.listarClientes());
+        cmbCliente.setItems(clientes);
     }
 
     public void vaciarTextField() {
@@ -113,8 +101,8 @@ public class MenuVentasController implements Initializable {
         tfFecha.clear();
         tfTotal.clear();
         tfBuscarVenta.clear();
-        tfEmpleado.clear(); 
-        tfCliente.clear();
+        cmbEmpleado.getSelectionModel().clearSelection();
+        cmbCliente.getSelectionModel().clearSelection();
     }
 
     public ObservableList<Venta> listarVentas() {
@@ -126,10 +114,10 @@ public class MenuVentasController implements Initializable {
         venta.setFechaVenta(Date.valueOf(tfFecha.getText()));
         venta.setTotal(Double.parseDouble(tfTotal.getText()));
 
-        Empleado empleado = empleadoService.buscarEmpleadoPorId(Long.parseLong(tfEmpleado.getText()));
+        Empleado empleado = (Empleado) cmbEmpleado.getSelectionModel().getSelectedItem();
         venta.setEmpleado(empleado);
 
-        Cliente cliente = clienteService.buscarClientePorDPI(Long.parseLong(tfCliente.getText()));
+        Cliente cliente = (Cliente) cmbCliente.getSelectionModel().getSelectedItem();
         venta.setCliente(cliente);
 
         ventaService.guardarVenta(venta);
@@ -141,10 +129,10 @@ public class MenuVentasController implements Initializable {
         venta.setFechaVenta(Date.valueOf(tfFecha.getText()));
         venta.setTotal(Double.parseDouble(tfTotal.getText()));
 
-        Empleado empleado = empleadoService.buscarEmpleadoPorId(Long.parseLong(tfEmpleado.getText()));
+        Empleado empleado = (Empleado) cmbEmpleado.getSelectionModel().getSelectedItem();
         venta.setEmpleado(empleado);
 
-        Cliente cliente = clienteService.buscarClientePorDPI(Long.parseLong(tfCliente.getText()));
+        Cliente cliente = (Cliente) cmbCliente.getSelectionModel().getSelectedItem();
         venta.setCliente(cliente);
 
         ventaService.guardarVenta(venta);

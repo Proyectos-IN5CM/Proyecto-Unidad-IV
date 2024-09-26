@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.equipo.webapp.bar.WebappApplication;
+import com.equipo.webapp.bar.controller.FXController.MenuDetalleVentasController;
 import com.equipo.webapp.bar.controller.FXController.MenuPrincipalController;
 import com.equipo.webapp.bar.controller.FXController.MenuProductosController;
 import com.equipo.webapp.bar.controller.FXController.MenuVentasController;
@@ -69,6 +70,24 @@ public class Main extends Application {
         }
     }
 
+    /*public void menuClientesView(){
+        try {
+            MenuClientesController menuClientesView = (MenuClientesController)cambiarEscena("MenuClientesView.fxml", 900, 625);
+            menuClientesView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    /*public void menuEmpleadosView(){
+        try {
+            MenuEmpleadosController menuEmpleadosView = (MenuEmpleadosController)cambiarEscena("MenuEmpleadosView.fxml", 900, 625);
+            menuEmpleadosView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
     public void menuProductosView(){
         try {
             MenuProductosController menuProductosView = (MenuProductosController)cambiarEscena("MenuProductosView.fxml", 900, 625);
@@ -78,10 +97,46 @@ public class Main extends Application {
         }
     }
 
+    /*public void menuProveedoresView(){
+        try {
+            MenuProveedoresController menuProveedoresView = (MenuProveedoresController)cambiarEscena("MenuProveedoresView.fxml", 900, 625);
+            menuProveedoresView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    /*public void menuReservacionesView(){
+        try {
+            MenuReservacionesController menuReservacionesView = (MenuReservacionesController)cambiarEscena("MenuReservacionesView.fxml", 900, 625);
+            menuReservacionesView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    /*public void menuDetalleReservacionesView(){
+        try {
+            MenuDetalleReservacionesController menuDetalleReservacionesView = (MenuDetalleReservacionesController)cambiarEscena("MenuReservacionesView.fxml", 500, 650);
+            menuDetalleReservacionesView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
     public void menuVentasView(){
         try {
             MenuVentasController menuVentasView = (MenuVentasController)cambiarEscena("MenuVentasView.fxml", 900, 625);
             menuVentasView.setStage(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void menuDetalleVentasView(){
+        try {
+            MenuDetalleVentasController menuDetalleVentasView = (MenuDetalleVentasController)cambiarEscena("MenuDetalleVentasView.fxml", 500, 650);
+            menuDetalleVentasView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
