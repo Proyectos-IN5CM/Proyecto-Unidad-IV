@@ -69,20 +69,6 @@ public class Main extends Application {
         }
     }
 
-    public void menuProductosView(){
-        try {
-            MenuProductosController menuProductosView = (MenuProductosController)cambiarEscena("MenuProductosView.fxml", 900, 625);
-            menuProductosView.setStage(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }    
-    }
-    public void menuEmpleadosView(){
-        try {
-            MenuEmpleadosController menuEmpleadosView = (MenuEmpleadosController)cambiarEscena("MenuEmpleadosView.fxml", 900, 625);
-            menuEmpleadosView.setStage(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-  }
+  
+  
 }
