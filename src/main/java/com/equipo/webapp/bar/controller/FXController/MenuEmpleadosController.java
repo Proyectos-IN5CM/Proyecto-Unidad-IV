@@ -28,16 +28,16 @@ public class MenuEmpleadosController implements Initializable {
     private Main stage;
     
     @FXML
-    TextField tfId,tfNombre,tfApellido,tfTelefono,tfBuscarEmpleado;
+    TextField tfId, tfNombre, tfApellido, tfTelefono, tfBuscarEmpleado;
    
     @FXML
     TableView tblEmpleados;
     
     @FXML
-    TableColumn colId, colNombre, colApellido,colTelefono;
+    TableColumn colId, colNombre, colApellido, colTelefono;
     
     @FXML
-    Button btnBack, btnGuardar, btnEliminar,btnVaciar,btnBuscar;
+    Button btnBack, btnGuardar, btnEliminar, btnVaciar, btnBuscar;
    
     @Autowired
     EmpleadoService empleadoService;
