@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.equipo.webapp.bar.controller.FXController.MenuProveedoresController">
    <children>
       <ImageView fitHeight="625.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +19,7 @@
       <TextField fx:id="tfNombre" layoutX="27.0" layoutY="263.0" prefHeight="30.0" prefWidth="170.0" promptText="Nombre Proveedor" />
       <TextField fx:id="tfApellido" layoutX="27.0" layoutY="349.0" prefHeight="30.0" prefWidth="170.0" promptText="Apellido Proveedor" />
       <TextField fx:id="tfTelefono" layoutX="28.0" layoutY="436.0" prefHeight="30.0" prefWidth="170.0" promptText="Teléfono Proveedor" />
-      <TableView fx:id="tblProveedores" layoutX="279.0" layoutY="146.0" prefHeight="320.0" prefWidth="591.0">
+      <TableView fx:id="tblProveedores" layoutX="279.0" layoutY="146.0" onMouseClicked="#cargarTextField" prefHeight="320.0" prefWidth="591.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="64.800048828125" text="ID" />
             <TableColumn fx:id="colNombre" prefWidth="154.4000244140625" text="Nombre" />
@@ -28,12 +28,12 @@
             <TableColumn fx:id="colTrabajo" prefWidth="129.60002441406255" text="Trabajo" />
          </columns>
       </TableView>
-      <Button fx:id="btnGuardar" layoutX="279.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Guardar" />
-      <Button fx:id="btnVaciar" layoutX="528.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Vaciar" />
-      <Button fx:id="btnEliminar" layoutX="404.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Eliminar" />
+      <Button fx:id="btnGuardar" layoutX="279.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Guardar" />
+      <Button fx:id="btnVaciar" layoutX="528.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Vaciar" />
+      <Button fx:id="btnEliminar" layoutX="404.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Eliminar" />
       <Button fx:id="btnBack" layoutX="19.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Back" />
       <TextField fx:id="tfTrabajo" layoutX="27.0" layoutY="519.0" prefHeight="30.0" prefWidth="170.0" promptText="Marca Trabajo" />
       <TextField fx:id="tfBuscarProveedor" layoutX="279.0" layoutY="549.0" prefHeight="26.0" prefWidth="155.0" promptText="Buscar Proveedor" />
-      <Button fx:id="btnBuscar" layoutX="455.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Buscar" />
+      <Button fx:id="btnBuscar" layoutX="455.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="60.0" text="Buscar" />
    </children>
 </AnchorPane>
