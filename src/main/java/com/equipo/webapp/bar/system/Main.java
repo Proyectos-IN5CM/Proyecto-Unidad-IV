@@ -115,7 +115,7 @@ public class Main extends Application {
 
     /*public void menuDetalleReservacionesView(){
         try {
-            MenuDetalleReservacionesController menuDetalleReservacionesView = (MenuDetalleReservacionesController)cambiarEscena("MenuReservacionesView.fxml", 900, 625);
+            MenuDetalleReservacionesController menuDetalleReservacionesView = (MenuDetalleReservacionesController)cambiarEscena("MenuReservacionesView.fxml", 500, 650);
             menuDetalleReservacionesView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,7 +133,7 @@ public class Main extends Application {
 
     /*public void menuDetalleVentasView(){
         try {
-            MenuDetalleVentasController menuDetalleVentasView = (MenuDetalleVentasController)cambiarEscena("MenuDetalleVentasView.fxml", 900, 625);
+            MenuDetalleVentasController menuDetalleVentasView = (MenuDetalleVentasController)cambiarEscena("MenuDetalleVentasView.fxml", 500, 650);
             menuDetalleVentasView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
