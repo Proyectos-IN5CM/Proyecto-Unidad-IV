@@ -8,18 +8,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.equipo.webapp.bar.controller.FXController.MenuClientesController">
    <children>
       <ImageView fitHeight="625.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ClientesView.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfDpi" editable="false" layoutX="31.0" layoutY="172.0" prefHeight="30.0" prefWidth="170.0" promptText="DPI Cliente" />
+      <TextField fx:id="tfDpi" layoutX="31.0" layoutY="172.0" prefHeight="30.0" prefWidth="170.0" promptText="DPI Cliente" />
       <TextField fx:id="tfNombre" layoutX="30.0" layoutY="262.0" prefHeight="30.0" prefWidth="170.0" promptText="Nombre Cliente" />
       <TextField fx:id="tfApellido" layoutX="30.0" layoutY="348.0" prefHeight="30.0" prefWidth="170.0" promptText="Apellido Cliente" />
       <TextField fx:id="tfTelefono" layoutX="31.0" layoutY="435.0" prefHeight="30.0" prefWidth="170.0" promptText="Teléfono Cliente" />
-      <TableView fx:id="tblClientes" layoutX="315.0" layoutY="145.0" prefHeight="320.0" prefWidth="535.0">
+      <TableView fx:id="tblClientes" layoutX="315.0" layoutY="145.0" onMouseClicked="#cargarTextField" prefHeight="320.0" prefWidth="535.0">
         <columns>
           <TableColumn fx:id="colDpi" prefWidth="107.99993896484375" text="DPI" />
           <TableColumn fx:id="colNombre" prefWidth="156.00009155273438" text="Nombre" />
@@ -27,11 +27,11 @@
             <TableColumn fx:id="colTelefono" prefWidth="120.0" text="Teléfono" />
         </columns>
       </TableView>
-      <Button fx:id="btnGuardar" layoutX="315.0" layoutY="491.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Guardar" />
-      <Button fx:id="btnVaciar" layoutX="564.0" layoutY="491.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Vaciar" />
-      <Button fx:id="btnEliminar" layoutX="440.0" layoutY="491.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Eliminar" />
-      <Button fx:id="btnBack" layoutX="22.0" layoutY="577.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Back" />
+      <Button fx:id="btnGuardar" layoutX="315.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Guardar" />
+      <Button fx:id="btnVaciar" layoutX="564.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Vaciar" />
+      <Button fx:id="btnEliminar" layoutX="440.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Eliminar" />
+      <Button fx:id="btnBack" layoutX="22.0" layoutY="577.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="60.0" text="Back" />
       <TextField fx:id="tfBuscarCliente" layoutX="315.0" layoutY="552.0" prefHeight="26.0" prefWidth="155.0" promptText="Buscar Cliente" />
-      <Button fx:id="btnBuscar" layoutX="491.0" layoutY="553.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Buscar" />
+      <Button fx:id="btnBuscar" layoutX="491.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="60.0" text="Buscar" />
    </children>
 </AnchorPane>
