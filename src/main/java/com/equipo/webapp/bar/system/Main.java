@@ -12,6 +12,8 @@ import com.equipo.webapp.bar.controller.FXController.MenuPrincipalController;
 import com.equipo.webapp.bar.controller.FXController.MenuProductosController;
 import com.equipo.webapp.bar.controller.FXController.MenuProveedoresController;
 import com.equipo.webapp.bar.controller.FXController.MenuVentasController;
+import com.equipo.webapp.bar.controller.FXController.MenuDetalleReservacionesController;
+import com.equipo.webapp.bar.controller.FXController.MenuReservacionesController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -107,23 +109,23 @@ public class Main extends Application {
         }
     }
 
-    /*public void menuReservacionesView(){
+    public void menuReservacionesView(){
         try {
             MenuReservacionesController menuReservacionesView = (MenuReservacionesController)cambiarEscena("MenuReservacionesView.fxml", 900, 625);
             menuReservacionesView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
-    /*public void menuDetalleReservacionesView(){
+    public void menuDetalleReservacionesView(){
         try {
-            MenuDetalleReservacionesController menuDetalleReservacionesView = (MenuDetalleReservacionesController)cambiarEscena("MenuReservacionesView.fxml", 500, 650);
+            MenuDetalleReservacionesController menuDetalleReservacionesView = (MenuDetalleReservacionesController)cambiarEscena("MenuDetalleReservacionesView.fxml", 500, 650);
             menuDetalleReservacionesView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     public void menuVentasView(){
         try {

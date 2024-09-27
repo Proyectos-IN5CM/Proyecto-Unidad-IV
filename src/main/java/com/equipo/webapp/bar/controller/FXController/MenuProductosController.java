@@ -60,15 +60,15 @@ public class MenuProductosController implements Initializable{
             }else{
                 editarProducto();
             }
-        }else if (event.getSource() == btnEliminar) {
-            eliminarProducto();
-        }else if (event.getSource() == btnVaciar) {
-            vaciarTextField();
-        }else if (event.getSource() == btnBuscar) {
-            buscarProducto();
-        }else if (event.getSource() == btnBack) {
-            stage.menuPrincipalView();
-        }
+            }else if (event.getSource() == btnEliminar) {
+                eliminarProducto();
+            }else if (event.getSource() == btnVaciar) {
+                vaciarTextField();
+            }else if (event.getSource() == btnBuscar) {
+                buscarProducto();
+            }else if (event.getSource() == btnBack) {
+                stage.menuPrincipalView();
+            }
     }
 
     // llena el tableView
