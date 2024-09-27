@@ -52,7 +52,7 @@ public class DetalleReservacionController implements Initializable{
         if (event.getSource() == btnBuscar) {
             buscarVenta();
         }else if (event.getSource() == btnBack) {
-            stage.menuReservacionesView();
+            //stage.menuReservacionesView();
         }
     }
 

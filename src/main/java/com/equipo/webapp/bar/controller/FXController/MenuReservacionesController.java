@@ -112,7 +112,7 @@ public class MenuReservacionesController implements Initializable{
         Reservacion reservacion = new Reservacion();
         reservacion.setDescripcion(taDescripcion.getText());
         reservacion.setEstado(Boolean.parseBoolean(tfEstado.getText()));
-        reservacion.setFechaReservacion(tfFecha.getText());
+        reservacion.setFechaReservacion(Date.valueOf(tfFecha.getText()));
         reservacion.setLugarReservacion(ftLugar.getText());
         reservacionService.guardarReservacion(reservacion);
         cargarDatos();
@@ -122,7 +122,7 @@ public class MenuReservacionesController implements Initializable{
         Reservacion reservacion = reservacionService.buscarReservacionPorId(Long.parseLong(tfId.getText()));
         reservacion.setDescripcion(taDescripcion.getText());
         reservacion.setEstado(Boolean.parseBoolean(tfEstado.getText()));
-        reservacion.setFechaReservacion(tfFecha.getText());
+        reservacion.setFechaReservacion(Date.valueOf(tfFecha.getText()));
         reservacion.setLugarReservacion(ftLugar.getText());
         cargarDatos();
     }
