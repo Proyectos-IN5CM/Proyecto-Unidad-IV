@@ -8,10 +8,12 @@ import java.util.Locale.Category;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.equipo.webapp.bar.model.Reservacion;
 import com.equipo.webapp.bar.repository.ReservacionRepository;
 import com.equipo.webapp.bar.service.ReservacionService;
+import com.equipo.webapp.bar.system.Main;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,11 +26,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.Setter;
 
-public class ReservacionController implements Initializable{
+@Component
+public class MenuReservacionesController implements Initializable{
+    
+    @Setter
+    private Main stage;
 
     @FXML
-    TextField tfId, tfFecha, ftLugar, tfEstado;
+    TextField tfId, tfFecha, ftLugar, tfEstado, tfBuscarReservacion;
     @FXML
     TextArea taDescripcion;
     @FXML
@@ -53,8 +60,14 @@ public class ReservacionController implements Initializable{
             }else{
                 editarReservacion();
             }
-        }else if(event.getSource() == btnEliminar){
+        }else if (event.getSource() == btnEliminar) {
             eliminarReservacion();
+        }else if (event.getSource() == btnVaciar) {
+            limpiarTextField();
+        }else if (event.getSource() == btnBuscar) {
+            buscarReservacion();
+        }else if (event.getSource() == btnBack) {
+            stage.menuPrincipalView();
         }
     }
 
@@ -97,7 +110,6 @@ public class ReservacionController implements Initializable{
 
     public void agregarReservacion(){
         Reservacion reservacion = new Reservacion();
-        // set reservacion
         reservacion.setDescripcion(taDescripcion.getText());
         reservacion.setEstado(Boolean.parseBoolean(tfEstado.getText()));
         reservacion.setFechaReservacion(tfFecha.getText());
@@ -119,5 +131,11 @@ public class ReservacionController implements Initializable{
         Reservacion reservacion = reservacionService.buscarReservacionPorId(Long.parseLong(tfId.getText()));
         reservacionService.eliminarReservacion(reservacion);
         cargarDatos();
+    }
+
+    public void buscarReservacion() {
+        Reservacion reservacion = reservacionService.buscarReservacionPorId(Long.parseLong(tfBuscarReservacion.getText()));
+            ObservableList<Reservacion> busqueda = FXCollections.observableArrayList(reservacion);
+            tblReservaciones.setItems(busqueda);
     }
 }
