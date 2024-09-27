@@ -32,7 +32,7 @@ public class MenuPrincipalController implements Initializable {
         }else if (event.getSource() == btnProveedores) {
             //stage.menuProveedoresView();
         }else if (event.getSource() == btnReservaciones) {
-            //stage.menuReservacionesView();
+            stage.menuReservacionesView();
         }else if (event.getSource() == btnVentas) {
             //stage.menuVentasView();
         }

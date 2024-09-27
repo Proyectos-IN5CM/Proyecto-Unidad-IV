@@ -35,13 +35,17 @@ public class MenuReservacionesController implements Initializable{
     private Main stage;
 
     @FXML
-    TextField tfId, tfFecha, ftLugar, tfEstado, tfBuscarReservacion;
+    TextField tfId, tfFecha, tfLugar, tfEstado, tfBuscarReservacion;
+
     @FXML
     TextArea taDescripcion;
+
     @FXML
     TableView tblReservaciones;
+
     @FXML
     TableColumn colId, colFecha, colLugar, colDescripcion, colEstado;
+
     @FXML 
     Button btnGuardar, btnEliminar, btnBack, btnVaciar, btnDetalleReservaciones, btnBuscar;
 
@@ -68,6 +72,8 @@ public class MenuReservacionesController implements Initializable{
             buscarReservacion();
         }else if (event.getSource() == btnBack) {
             stage.menuPrincipalView();
+        }else if (event.getSource() == btnDetalleReservaciones) {
+            stage.menuDetalleReservacionesView();
         }
     }
 
@@ -84,22 +90,18 @@ public class MenuReservacionesController implements Initializable{
     public void cargarTextField(){
         Reservacion reservacion = (Reservacion)tblReservaciones.getSelectionModel().getSelectedItem();
         if (reservacion != null) {
-
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy"); // Date a String
-            String strDate = sdf.format(reservacion.getFechaReservacion());
-
             tfId.setText(Long.toString(reservacion.getId()));
+            tfFecha.setText(reservacion.getFechaReservacion().toString());
+            tfLugar.setText(reservacion.getLugarReservacion());
             taDescripcion.setText(reservacion.getDescripcion());
             tfEstado.setText(Boolean.toString(reservacion.getEstado()));
-            tfFecha.setText(strDate); //Date convertido a String
-            ftLugar.setText(reservacion.getLugarReservacion());
         }
     }
 
     public void limpiarTextField(){
         tfId.clear();
         tfFecha.clear();
-        ftLugar.clear();
+        tfLugar.clear();
         taDescripcion.clear();
         tfEstado.clear();
     }
@@ -113,7 +115,7 @@ public class MenuReservacionesController implements Initializable{
         reservacion.setDescripcion(taDescripcion.getText());
         reservacion.setEstado(Boolean.parseBoolean(tfEstado.getText()));
         reservacion.setFechaReservacion(Date.valueOf(tfFecha.getText()));
-        reservacion.setLugarReservacion(ftLugar.getText());
+        reservacion.setLugarReservacion(tfLugar.getText());
         reservacionService.guardarReservacion(reservacion);
         cargarDatos();
     }
@@ -123,7 +125,8 @@ public class MenuReservacionesController implements Initializable{
         reservacion.setDescripcion(taDescripcion.getText());
         reservacion.setEstado(Boolean.parseBoolean(tfEstado.getText()));
         reservacion.setFechaReservacion(Date.valueOf(tfFecha.getText()));
-        reservacion.setLugarReservacion(ftLugar.getText());
+        reservacion.setLugarReservacion(tfLugar.getText());
+        reservacionService.guardarReservacion(reservacion);
         cargarDatos();
     }
 

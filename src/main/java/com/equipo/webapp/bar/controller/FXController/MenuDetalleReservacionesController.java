@@ -24,7 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Setter;
 
 @Component
-public class DetalleReservacionController implements Initializable{
+public class MenuDetalleReservacionesController implements Initializable{
 
     @Setter
     private Main stage;
@@ -32,14 +32,18 @@ public class DetalleReservacionController implements Initializable{
     @FXML
     TextField tfId, tfDpi, tfBuscarDetalleReservacion, tfBuscar;
     @FXML
+
     Button btnBuscar, btnBack;
     @FXML
+
     TableView tblDetalleReservaciones;
     @FXML
+    
     TableColumn colId, colDpi;
 
     @Autowired
     ReservacionService reservacionService;
+
     @Autowired
     ClienteService clienteService;
     
@@ -52,7 +56,7 @@ public class DetalleReservacionController implements Initializable{
         if (event.getSource() == btnBuscar) {
             buscarVenta();
         }else if (event.getSource() == btnBack) {
-            //stage.menuReservacionesView();
+            stage.menuReservacionesView();
         }
     }
 
