@@ -24,6 +24,7 @@ import lombok.Setter;
 
 @Component
 public class MenuEmpleadosController implements Initializable {
+    
     @Setter
     private Main stage;
     

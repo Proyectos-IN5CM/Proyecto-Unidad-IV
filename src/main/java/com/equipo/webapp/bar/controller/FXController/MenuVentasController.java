@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.equipo.webapp.bar.model.Venta;
 import com.equipo.webapp.bar.model.Empleado;
+import com.equipo.webapp.bar.model.Producto;
 import com.equipo.webapp.bar.model.Cliente;
 import com.equipo.webapp.bar.service.VentaService;
 import com.equipo.webapp.bar.service.EmpleadoService;
@@ -84,8 +85,8 @@ public class MenuVentasController implements Initializable {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaVenta"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-        colEmpleado.setCellValueFactory(new PropertyValueFactory<>("empleado.nombre")); // Asumiendo que `empleado` tiene un atributo `nombre`
-        colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente.nombre")); // Asumiendo que `cliente` tiene un atributo `nombre`
+        colEmpleado.setCellValueFactory(new PropertyValueFactory<>("empleado"));
+        colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
     }
 
     public void cargarComboBoxes() {
@@ -94,6 +95,17 @@ public class MenuVentasController implements Initializable {
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList(clienteService.listarClientes());
         cmbCliente.setItems(clientes);
+    }
+
+    public void cargarTextField(){
+        Venta venta =  (Venta)tblVentas.getSelectionModel().getSelectedItem();
+        if (venta != null) {
+            tfId.setText(Long.toString(venta.getId()));
+            tfFecha.setText(venta.getFechaVenta().toString());
+            tfTotal.setText(Double.toString(venta.getTotal()));
+            cmbCliente.getSelectionModel().select(venta.getCliente());
+            cmbEmpleado.getSelectionModel().select(venta.getEmpleado());
+        }
     }
 
     public void vaciarTextField() {

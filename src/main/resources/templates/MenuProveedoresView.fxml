@@ -31,7 +31,7 @@
       <Button fx:id="btnGuardar" layoutX="279.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Guardar" />
       <Button fx:id="btnVaciar" layoutX="528.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Vaciar" />
       <Button fx:id="btnEliminar" layoutX="404.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="102.0" text="Eliminar" />
-      <Button fx:id="btnBack" layoutX="19.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Back" />
+      <Button fx:id="btnBack" layoutX="19.0" layoutY="578.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="60.0" text="Back" />
       <TextField fx:id="tfTrabajo" layoutX="27.0" layoutY="519.0" prefHeight="30.0" prefWidth="170.0" promptText="Marca Trabajo" />
       <TextField fx:id="tfBuscarProveedor" layoutX="279.0" layoutY="549.0" prefHeight="26.0" prefWidth="155.0" promptText="Buscar Proveedor" />
       <Button fx:id="btnBuscar" layoutX="455.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="60.0" text="Buscar" />

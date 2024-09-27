@@ -1,9 +1,7 @@
 package com.equipo.webapp.bar.controller.FXController;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
-import java.util.Locale.Category;
 
 import java.sql.Date;
 
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.equipo.webapp.bar.model.Reservacion;
-import com.equipo.webapp.bar.repository.ReservacionRepository;
 import com.equipo.webapp.bar.service.ReservacionService;
 import com.equipo.webapp.bar.system.Main;
 
@@ -104,6 +101,7 @@ public class MenuReservacionesController implements Initializable{
         tfLugar.clear();
         taDescripcion.clear();
         tfEstado.clear();
+        tfBuscarReservacion.clear();
     }
 
     public ObservableList<Reservacion>listarReservaciones(){
