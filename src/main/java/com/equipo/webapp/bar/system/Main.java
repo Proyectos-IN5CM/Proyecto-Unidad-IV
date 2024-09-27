@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.equipo.webapp.bar.WebappApplication;
 import com.equipo.webapp.bar.controller.FXController.MenuPrincipalController;
 import com.equipo.webapp.bar.controller.FXController.MenuProductosController;
+import com.equipo.webapp.bar.controller.FXController.MenuProveedoresController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -95,14 +96,14 @@ public class Main extends Application {
         }
     }
 
-    /*public void menuProveedoresView(){
+    public void menuProveedoresView(){
         try {
             MenuProveedoresController menuProveedoresView = (MenuProveedoresController)cambiarEscena("MenuProveedoresView.fxml", 900, 625);
             menuProveedoresView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     /*public void menuReservacionesView(){
         try {
