@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.equipo.webapp.bar.WebappApplication;
 import com.equipo.webapp.bar.controller.FXController.MenuDetalleVentasController;
 import com.equipo.webapp.bar.controller.FXController.MenuClientesController;
+import com.equipo.webapp.bar.controller.FXController.MenuEmpleadosController;
 import com.equipo.webapp.bar.controller.FXController.MenuPrincipalController;
 import com.equipo.webapp.bar.controller.FXController.MenuProductosController;
 import com.equipo.webapp.bar.controller.FXController.MenuProveedoresController;
@@ -83,14 +84,14 @@ public class Main extends Application {
         }
     }
 
-    /*public void menuEmpleadosView(){
+    public void menuEmpleadosView(){
         try {
             MenuEmpleadosController menuEmpleadosView = (MenuEmpleadosController)cambiarEscena("MenuEmpleadosView.fxml", 900, 625);
             menuEmpleadosView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     public void menuProductosView(){
         try {

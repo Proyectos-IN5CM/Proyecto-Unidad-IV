@@ -18,7 +18,7 @@ public class MenuPrincipalController implements Initializable {
 
     @Setter
     private Main stage;
-
+    
     @FXML
     private MenuItem btnClientes, btnEmpleados, btnProductos, btnProveedores, btnReservaciones, btnVentas;
 
@@ -26,7 +26,7 @@ public class MenuPrincipalController implements Initializable {
         if(event.getSource() == btnClientes){
             stage.menuClientesView();
         }else if (event.getSource() == btnEmpleados) {
-            //stage.menuEmpleadosView();
+            stage.menuEmpleadosView();
         }else if (event.getSource() == btnProductos) {
             stage.menuProductosView();
         }else if (event.getSource() == btnProveedores) {
