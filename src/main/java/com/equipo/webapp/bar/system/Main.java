@@ -7,9 +7,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.equipo.webapp.bar.WebappApplication;
+import com.equipo.webapp.bar.controller.FXController.MenuDetalleVentasController;
 import com.equipo.webapp.bar.controller.FXController.MenuPrincipalController;
 import com.equipo.webapp.bar.controller.FXController.MenuProductosController;
 import com.equipo.webapp.bar.controller.FXController.MenuProveedoresController;
+import com.equipo.webapp.bar.controller.FXController.MenuVentasController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -123,21 +125,21 @@ public class Main extends Application {
         }
     }*/
 
-    /*public void menuVentasView(){
+    public void menuVentasView(){
         try {
             MenuVentasController menuVentasView = (MenuVentasController)cambiarEscena("MenuVentasView.fxml", 900, 625);
             menuVentasView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
-    /*public void menuDetalleVentasView(){
+    public void menuDetalleVentasView(){
         try {
             MenuDetalleVentasController menuDetalleVentasView = (MenuDetalleVentasController)cambiarEscena("MenuDetalleVentasView.fxml", 500, 650);
             menuDetalleVentasView.setStage(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }

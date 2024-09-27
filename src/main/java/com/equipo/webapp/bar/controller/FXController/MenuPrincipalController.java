@@ -34,12 +34,11 @@ public class MenuPrincipalController implements Initializable {
         }else if (event.getSource() == btnReservaciones) {
             //stage.menuReservacionesView();
         }else if (event.getSource() == btnVentas) {
-            //stage.menuVentasView();
+            stage.menuVentasView();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        
     }
 }
